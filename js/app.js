@@ -2,89 +2,73 @@ $(document).ready(function(){
 	
 	var qBank = new QuestionBank();
 	var questions = qBank.getQuestions();
+	var tracker = new Tracker();
 
-	setQuestion(questions);
+	if(tracker.getCurrentQuestionIndex() == questions.length ){
+		tracker.reset();
+	}
+
+	setQuestion(questions[tracker.getCurrentQuestionIndex()]);
 
 	$("#submitButton").click(function() {
 		//if answer is not selected, alert user
-		if(selectedAnswerIndex == -1) {
+		if(tracker.isNoAnswerSelected()) {
 			alert("Please select an answer.");
 		} else {
+			//update scores
+			updateScores(questions,tracker);
 
-		//update scores
-		updateScores(questions);
+			//set next question
+			tracker.resetQuestionIndexes();
+			if(tracker.getCurrentQuestionIndex() == questions.length ){
+				tracker.reset();
+			}
+			setQuestion(questions[tracker.getCurrentQuestionIndex()]);
 
-		//set next question
-		updateIndexes();
-		setQuestion(questions);
-		
 		}
 
 	});
 
 	$(".answerBox").each(function(){
-		$(this).click(function(){
-			selectedAnswerIndex = $(this).data("answerindex")
+
+		$(this).mouseenter(function(){
+			$(this).css('background-color','#E8FFFF');
+		}).mouseleave(function(){
+			var color = $(this).data("color")
+			$(this).css('background-color',color);
 		});
 
-	});
+    	//select the answer on click
+    	$(this).click(function(){
+    		tracker.updateSelectedAnswer($(this).data("answerindex"))
+    		// $(this).css('background-color','#E8FFFF');
+
+    	});
+
+    });
 	
 });
 
-function Question(questionText, answers, correctAnswerIndex) {
-	this.questionText = questionText;
-	this.answers = answers;
-	this.correctAnswerIndex= correctAnswerIndex;
-}
 
-function QuestionBank() {
-		var q1 = new Question("Who wrote the Harry Potter series ?",
-		['J K Rowling','Roald Dahl','J R Tolkiens','Stevan Sehgal'],
-		0);
-	var q2 = new Question("Who killed Harry's parents ?",
-		['Severus Snape','Albus Dumbledore','Lord Voldemort','Prof Quirell'],
-		2);
-	var q3 = new Question("Who was the half blood prince",
-		['James Potter','Sirius Black','Remus Lupin','Severus Snape'],
-		3);
-
-	this.getQuestions = function() {
-		return [q1,q2,q3];
-	};
-}
-
-var currentQnIndex = 0;
-var scores = 0;
-var selectedAnswerIndex = -1;
-
-
-function setQuestion(questions) {
-	if(currentQnIndex == questions.length ){
-		currentQnIndex =0;
-		scores = 0;
-	}
-	var qn = questions[currentQnIndex]
-
+function setQuestion(qn) {
 	$("#questionTextID").text(qn.questionText);
 	$("#ans1").text(qn.answers[0]);
 	$("#ans2").text(qn.answers[1]);
 	$("#ans3").text(qn.answers[2]);
 	$("#ans4").text(qn.answers[3]);
+	$("#qimage").attr("src",qn.questionImage);
 }
 
-function updateScores(questions) {
-	var correctAnswerIndex = questions[currentQnIndex].correctAnswerIndex
-	console.log("ans: "+correctAnswerIndex+" currentQnIndex" + currentQnIndex);
-	if(correctAnswerIndex == selectedAnswerIndex){
-		scores = scores + 20;
-		console.log(scores);
+function updateScores(questions, tracker) {
+	var correctAnswerIndex = questions[tracker.getCurrentQuestionIndex()].correctAnswerIndex
+	console.log("ans: "+correctAnswerIndex+" currentQnIndex" + tracker.getCurrentQuestionIndex());
+	if(tracker.isCorrectAnswer(correctAnswerIndex)){
+		tracker.increaseScore(20);
+		$("#score").text(tracker.getScore());
+		console.log(tracker.getScore());
 	}
 	
 }
 
-function updateIndexes(){
-	currentQnIndex++;
-	selectedAnswerIndex = -1;
-}
 
 
