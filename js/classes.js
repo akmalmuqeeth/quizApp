@@ -73,6 +73,7 @@ function Tracker(){
 	this.reset = function(){
 		currentQuestionIndex =0;
 		score = 0;
+		skippedQuestionsCount = 0;
 	}
 
 	this.goToNextQuestion = function(){

@@ -30,16 +30,6 @@ $(document).ready(function(){
 	});
 
 	$(".answerBox").each(function(){
-
-		// $(this).mouseenter(function(){
-		// 	$(this).css('background-color','#E8FFFF');
-		// }).mouseleave(function(){
-		// 	var color = $(this).data("color")
-		// 	$(this).css('background-color',color);
-		// });
-
-
-
     	//higlight the answer when click
     	$(this).click(function(){
     		$('.answerBox').each(function(){
