@@ -5,7 +5,6 @@
 	<link href="http://fonts.googleapis.com/css?family=Average|Courgette|Satisfy|Lobster" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<script type="text/javascript" src="js/snowflakes.js"></script>
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script type="text/javascript" src="js/classes.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
@@ -35,10 +34,12 @@
 				</div>
 			</div><!-- questionSection -->
 		</div> <!-- quiz box -->
-		<div class="resultBox">
+		   <div class="resultBox">
+				
+				<div id="skipped_questions">Skipped: <span id="skippedCount">0</span></div>
+				<div id="correct_questions">Correct: <span id="correctCount">0</span></div>
+				<div id="incorrect_questions">Incorrect: <span id="correctCount">0</span></div>
 				<div id="score_line_1"></div>
-				<div id="score_line_2"></div>
-				<div id="skipped_questions">Skipped Questions: <span id="skippedCount">0</span></div>
 			</div><!-- result box -->
 	</div><!-- outer box -->
 
