@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var questions = qBank.getQuestions();
 	var tracker = new Tracker();
 
-	// start the quiz when all questions are asked
+	// re-start the quiz when all questions are asked
 	if(tracker.getCurrentQuestionIndex() == questions.length ){
 		tracker.reset();
 	}
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	});
 
 	$(".answerBox").each(function(){
-    	//higlight the answer when click
+    	//higlight the answer when clicked
     	$(this).click(function(){
     		$('.answerBox').each(function(){
 				$(this).removeClass('highlight');
@@ -40,7 +40,6 @@ $(document).ready(function(){
     		//set the clicked answerBox as the answer
     		tracker.updateSelectedAnswer($(this).data("answerindex"));
     	});
-
     });
 
 	//skip question
@@ -53,7 +52,7 @@ $(document).ready(function(){
 	
 });
 
-function setQuestion(qn, questionNumber, totalQuestions) {
+var setQuestion = function(qn, questionNumber, totalQuestions) {
 	var questionText = "["+questionNumber+"/"+totalQuestions+"] "+qn.questionText;
 	$("#questionTextID").text(questionText);
 	$("#ans1").text(qn.answers[0]);
@@ -65,7 +64,7 @@ function setQuestion(qn, questionNumber, totalQuestions) {
 
 }
 
-function updateScores(questions, tracker) {
+var updateScores = function (questions, tracker) {
 	var currentQuestion = questions[tracker.getCurrentQuestionIndex()];
 	if(tracker.isCorrectAnswer(currentQuestion.correctAnswerIndex)){
 		tracker.increaseScore(20);
@@ -78,7 +77,7 @@ function updateScores(questions, tracker) {
 	
 }
 
-function proceedToNextQuestion(tracker, questions){
+var proceedToNextQuestion = function(tracker, questions){
 	tracker.goToNextQuestion();
 	if(tracker.getCurrentQuestionIndex() == questions.length ){
 		tracker.reset();

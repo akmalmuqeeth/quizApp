@@ -26,7 +26,6 @@ function QuestionBank() {
 	var q5 = new Question("What subject does Prof.Mc Gonagall teach?",
 		['Transfiguration','Defence Against the Dark Arts','Divination','History'],
 		0,"images/q5.jpg","grayscale");
-
 	
 	var q6 = new Question("What position does Harry play at in the Gryffindor Quidditch Team?",
 		['Chaser','Beater','Goalie','Seeker'],
