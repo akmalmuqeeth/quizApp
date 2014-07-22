@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>The HP Quiz</title>
+	<link href="http://fonts.googleapis.com/css?family=Average|Courgette|Satisfy|Lobster|Shadows Into Light" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script src="http://code.jquery.com/jquery.min.js"></script>
@@ -11,12 +12,14 @@
 <body>
 
 	<div class="outerBox">
-		<header class="header"></header>
-		<div class="resultBox">
-			<span>Correct answer: a three-headed dog</span>
-		</div>
+		<header class="header">
+			<div id="branding">
+                <img src="images/logo_2.jpg" alt="HP">
+                <h1>The Harry Potter Quiz</h1>
+            </div>
+		</header>
 		<div class="quizBox">
-		<img id="qimage" src="images/q1.gif"> 
+			<img id="qimage" src="images/q1as.gif" alt="image"> 
 			<div class="questionSection">
 				<span id="questionTextID" class="questionTitle"> </span>
 
@@ -27,14 +30,17 @@
 
 				<div class="buttonsBox">
 					<button id="submitButton">Submit</button>
-					<button >Skip Question</button>
+					<button id="skipQuestion">Skip Question</button>
 				</div>
 			</div><!-- questionSection -->
-			
-			
 		</div> <!-- quiz box -->
-
-		
+		   <div class="resultBox">
+				
+				<div id="skipped_questions">Skipped: <span id="skippedCount">0</span></div>
+				<div id="correct_questions">Correct: <span id="correctCount">0</span></div>
+				<div id="incorrect_questions">Incorrect: <span id="inCorrectCount">0</span></div>
+				<div id="score_line_1"></div>
+			</div><!-- result box -->
 	</div><!-- outer box -->
 
 </body>
