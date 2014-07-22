@@ -57,6 +57,8 @@ function Tracker(){
 	var selectedAnswerIndex = -1;
 	var score = 0;
 	var skippedQuestionsCount = 0;
+	var correctQuestionCount = 0;
+	var incorrectQuestionCount = 0;
 
 	this.getCurrentQuestionIndex = function(){
 		return currentQuestionIndex;
@@ -73,6 +75,7 @@ function Tracker(){
 		currentQuestionIndex =0;
 		score = 0;
 		skippedQuestionsCount = 0;
+		correctQuestionCount = 0;
 	}
 
 	this.goToNextQuestion = function(){
@@ -97,6 +100,22 @@ function Tracker(){
 	}
 	this.incrementSkippedQnCount = function(){
 		skippedQuestionsCount++;
+	}
+
+	this.incrementCorrectQnCount = function(){
+		correctQuestionCount++;
+	}
+
+	this.getCorrectQnCount = function(){
+		return correctQuestionCount;
+	}
+
+	this.incrementInCorrectQnCount = function(){
+		incorrectQuestionCount++;
+	}
+
+	this.getIncorrectQnCount = function(){
+		return incorrectQuestionCount;
 	}
 
 }

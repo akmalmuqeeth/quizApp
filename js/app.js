@@ -70,9 +70,13 @@ var updateScores = function (questions, tracker) {
 		tracker.increaseScore(20);
 		$("#score_line_1").text("Correct answer: Your score is:"+tracker.getScore());
 		$("#score_line_1").removeClass("incorrectAnswer").addClass("correctAnswer");
+		tracker.incrementCorrectQnCount();
+		$("#correctCount").text(tracker.getCorrectQnCount());
 	} else {
 		$("#score_line_1").text("Oops! Incorrect answer. Your current score is:"+tracker.getScore());
 		$("#score_line_1").removeClass("correctAnswer").addClass("incorrectAnswer");
+		tracker.incrementInCorrectQnCount();
+		$("#inCorrectCount").text(tracker.getIncorrectQnCount());
 	}
 	
 }
